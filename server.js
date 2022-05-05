@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 const compression = require("compression");
 
 const PORT = process.env.PORT || 3001;
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/budget-tracker';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/budget';
+;
 
 const app = express();
 
@@ -16,9 +17,10 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/budget-tracker', {
+mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
-  // useFindAndModify: false,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
   family: 4
 });
 
